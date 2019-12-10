@@ -1,0 +1,583 @@
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, maximum-scale=1, user-scalable=0, minimal-ui">
+
+    <link rel="stylesheet" href="/PaginaWeb/css/index.css">
+    <link rel="stylesheet" href="/PaginaWeb/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="/PaginaWeb/lib/jquery-ui.css">
+
+    <script src="/PaginaWeb/lib/jquery-3.4.1.min.js"></script>
+    <script src="/PaginaWeb/lib/jquery-ui.js"></script>
+    <script src="/PaginaWeb/lib/datepicker-it.js"></script>
+    <script src="/PaginaWeb/lib/bootstrap.min.js"></script>
+
+    <script src="/PaginaWeb/js/index.js"></script>
+    <!--<script src="/PaginaWeb/socket.io/socket.io.js"></script>-->
+    
+    <title>Esse3 2</title>
+</head>
+
+<body style="width: 100%; height: 100%;">
+    <div class="parent justify-content-center">
+        <form name="" target="_self" method="post"
+            action="https://didattica.unicam.it/auth/docente/CalendarioEsami/InserisciAggiornaAppelloCalEsaSubmit.do;jsessionid=1A0D318C6D758E0DC4AF884ED470C23F.esse3-unicam-prod-02"
+            onsubmit="if (!checkFormSingleSubmit(this)) {return false;} ">
+
+            <table cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+
+                    <tr>
+                        <td>
+                            <table width="" cellspacing="0" cellpadding="1" border="0">
+                                <tbody>
+
+                                    <input value="10028"name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/cds_id" type="hidden">
+                                    <input value="2016"name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/aa_cal_id"type="hidden">
+                                    <input value=""name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/app_id"type="hidden">
+                                    <input value="8491"name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/ad_id"type="hidden">
+                                    <input value=""name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/iscritti" type="hidden">
+                                    <input value="0" name="INS_TURNO" type="hidden">
+                                    <input value="0" name="COUNT_TURNI" type="hidden">
+                                    <input value="241" name="GG_INI_ISCR" type="hidden">
+                                    <input value="1" name="GG_FINE_ISCR" type="hidden">
+                                    <input value="1" name="MOD_SES" type="hidden">
+                                    <input value="2" name="NOTIFICA_CAMBIO_DATA" type="hidden">
+                                    <input value="2"  name="NOTIFICA_CAMBIO_LUOGO" type="hidden">
+                                    <input value="2" name="NOTIFICA_CAMBIO_DATA_LUOGO" type="hidden">
+                                    <input value="10028" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row/cds_id" type="hidden">
+                                    <input value="" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row/app_id" type="hidden">
+                                    <input value="8491" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row/ad_id"type="hidden">
+                                    <input value="PF" name="TIPO_PROVA" type="hidden">
+                                    <input value="0"name="MIN_AA_CAL_ID" type="hidden">
+                                    <input value="0" name="AULE_OBBL" type="hidden">
+                                    <input value="1" name="VIEW_DETT_ESACOM" type="hidden">
+                                    <input value="-100" name="VIS_DETT" type="hidden">
+                                    <input value="0" name="ora_appello_disable" type="hidden">
+                                    <input value="" name="app_log_id"type="hidden">
+                                    <input value=""name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/app_log_id"type="hidden">
+                                    <input value="1" name="CHECK_MODIFICA" type="hidden">
+                                    <input value="1" name="VIS_PERIODI_ISCR" type="hidden">
+                                    <input value="1" name="NEW_APP" type="hidden">
+
+                                    <tr>
+                                        <th class="tplForm" style="height:5px; background-color : #DBDBDB;"align="left"></th>
+                                        <td class="tplForm" style="height:5px; background-color : #DBDBDB;" align="left"colspan="4"></td>
+                                    </tr>
+
+                                    <!--DATA E ORA-->
+                                    <tr>
+
+                                        <th class="tplForm" style="background-color : #DBDBDB;" align="left"
+                                            width="160px">*Data appello:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" style="background-color : #DBDBDB;" align="left">
+                                            <input id="data_inizio_app" class="tplForm input_date hasDatepicker"
+                                                value="" size="10" maxlength="10"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_inizio_app"
+                                                type="text" onchange="setDiffDate(this.value,-241,'data_inizio_iscr');
+                                                        setDiffDate(this.value,-1,'data_fine_iscr')"
+                                                autocomplete="off">
+                                            <script>
+                                                jQuery(".input_date").datepicker({
+                                                    dateFormat: "dd/mm/yy",
+                                                    changeMonth: true,
+                                                    changeYear: true,
+                                                    showButtonPanel: true,
+                                                    yearRange: "-100:+10",
+                                                    autoclose: true,
+                                                    monthNamesShort: jQuery.datepicker.regional["it"].monthNames,
+                                                    onSelect: function (d, i) {
+                                                        if (d !== i.lastVal) {
+                                                            try {
+                                                                jQuery(this).change();
+                                                            }
+                                                            catch (err) {
+                                                                console.log(err);
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                            </script>
+                                            <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
+                                        </td>
+
+                                        <th class="tplForm" style="background-color : #DBDBDB;" align="left"
+                                            width="50px">ora:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" style="background-color : #DBDBDB;" align="left">
+                                            <select class="tplForm" width="" cols="1" name="hh_esa">
+                                                <option value=""></option>
+                                                <option value="08">8</option>
+                                                <option value="09">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                            </select>
+
+                                            &nbsp;:&nbsp;
+
+                                            <select class="tplForm" width="" cols="1" name="mm_esa">
+                                                <option value=""></option>
+                                                <option value="00">00</option>
+                                                <option value="15">15</option>
+                                                <option value="30">30</option>
+                                                <option value="45">45</option>
+                                            </select>
+                                        </td>
+
+                                    </tr>
+
+                                    <!--VERBALIZZAZIONE-->
+                                    <tr>
+                                        <th class="tplForm" style="background-color : #DBDBDB;" align="left">
+                                            *Verbalizzazione:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" style="background-color : #DBDBDB;" align="left"
+                                            colspan="3">
+                                            <select class="tplForm" width="" cols="1"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/tipo_gest_app_cod">
+                                                <option value="FWS" title="Appello Firma Digitale" selected="">Appello
+                                                    Firma Digitale</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <!--TIPO ESAME-->
+                                    <tr>
+                                        <th class="tplForm" style="background-color : #DBDBDB;" align="left">Tipo esame:
+                                            <br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" style="background-color : #DBDBDB;" align="left"
+                                            colspan="3">
+                                            <input value="S"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/tipo_iscr_cod_prev"
+                                                type="radio" checked="">Scritto<br>
+                                            <input value="O"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/tipo_iscr_cod_prev"
+                                                type="radio">Orale<br>
+                                        </td>
+                                    </tr>
+
+                                    <!--ISCRIZIONI DAL AL-->
+                                    <tr>
+
+                                        <th class="tplForm" align="left">*Iscrizioni (dal- al):<br>
+                                            <span class="tplFormNote">
+                                            </span>
+                                        </th>
+
+                                        <td class="tplForm" align="left">
+                                            <input id="data_inizio_iscr" class="tplForm input_date hasDatepicker"
+                                                value="" size="10" maxlength="10"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_inizio_iscr"
+                                                type="text" onchange="setDiffDate(this.value,+240,'data_fine_iscr');
+                                                    " autocomplete="off">
+                                            <script>
+                                                jQuery(".input_date").datepicker({
+                                                    dateFormat: "dd/mm/yy",
+                                                    changeMonth: true,
+                                                    changeYear: true,
+                                                    showButtonPanel: true,
+                                                    yearRange: "-100:+10",
+                                                    autoclose: true,
+                                                    monthNamesShort: jQuery.datepicker.regional["it"].monthNames,
+                                                    onSelect: function (d, i) {
+                                                        if (d !== i.lastVal) {
+                                                            try {
+                                                                jQuery(this).change();
+                                                            }
+                                                            catch (err) {
+                                                                console.log(err);
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                            </script>
+                                            <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
+                                        </td>
+
+                                        <td class="tplForm" align="left" colspan="2">
+
+                                            <input id="data_fine_iscr" class="tplForm input_date hasDatepicker" value=""
+                                                size="10" maxlength="10"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_fine_iscr"
+                                                type="text" autocomplete="off">
+                                            <script>
+                                                jQuery(".input_date").datepicker({
+                                                    dateFormat: "dd/mm/yy",
+                                                    changeMonth: true,
+                                                    changeYear: true,
+                                                    showButtonPanel: true,
+                                                    yearRange: "-100:+10",
+                                                    autoclose: true,
+                                                    monthNamesShort: jQuery.datepicker.regional["it"].monthNames,
+                                                    onSelect: function (d, i) {
+                                                        if (d !== i.lastVal) {
+                                                            try {
+                                                                jQuery(this).change();
+                                                            }
+                                                            catch (err) {
+                                                                console.log(err);
+                                                            }
+                                                        }
+                                                    }
+                                                });
+                                            </script>
+                                            <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
+                                        </td>
+
+                                    </tr>
+
+                                    <!--DESCRIZIONE-->
+                                    <tr>
+                                        <th class="tplForm" align="left">*Descrizione:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" align="left" colspan="3">
+                                            <input id="" class="tplForm" value="Basi di Dati" size="40" maxlength="40"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/des"
+                                                type="text">
+                                        </td>
+                                    </tr>
+
+                                    <!--PRENOTABILE DA-->
+                                    <tr>
+                                        <th class="tplForm" align="left">Prenotabile da:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" align="left" colspan="3">
+                                            <select class="tplForm" width="" cols="1"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/cond_id">
+                                                <option value="" title="tutti">tutti</option>
+                                                <option value="80084" title="abilita sessione unica per corsi singoli">
+                                                    abilita sessione unica per corsi singoli</option>
+                                                <option value="80097" title="calcola sessione per ad = ofa">calcola
+                                                    sessione per ad = ofa</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <!--NOTE-->
+                                    <tr>
+                                        <th class="tplForm" align="left">Note:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" align="left" colspan="3">
+                                            <textarea class="tplForm"
+                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/note"
+                                                cols="74" rows="4"></textarea>
+                                        </td>
+                                    </tr>
+
+                                    <!--SESSIONI-->
+                                    <tr>
+                                        <th class="tplForm" align="left">Sessioni:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" align="left" colspan="4">
+                                            <select class="tplForm" width="" cols="1" name="SES_ID_AA_SES_ID" size="4"
+                                                multiple=""> </select>
+                                        </td>
+                                    </tr>
+
+                                    <!--APPELO RISERVATO AL DOCENTE-->
+                                    <tr>
+                                        <th class="tplForm" align="left">Appello riservato al docente:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+                                        <td class="tplForm" align="left" colspan="3">
+                                            <input class="tplForm" value="1" name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/riservato_flg" type="checkbox">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="tplForm" style="height:15px;" align="left"></th>
+                                        <td class="tplForm" style="height:15px;" align="left" colspan="4"></td>
+                                    </tr>
+
+                                    <!--DETTAGLI ORGANIZZATIVI-->
+                                    <tr>
+                                        <td class="tplForm" style="border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: #333333;" align="left" colspan="4">
+                                            <b>dettagli organizzativi</b>
+                                        </td>
+                                    </tr>
+
+                                    <!--EDIFICIO-->
+                                    <tr>
+                                        <th class="tplForm" align="left">Edificio:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" align="left" colspan="3"><select class="tplForm" width="" cols="1" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/edificio_id"onchange="loadElencoAule(this.value,'cmbAule1')">
+                                                <option value="" title="-- selezionare --">-- selezionare --</option>
+                                                <option value="20" title=""></option>
+                                                <option value="31" title="CAMPUS">CAMPUS</option>
+                                                <option value="26" title="CENTRO CULTURALE BENEDETTO XIII">CENTRO
+                                                    CULTURALE BENEDETTO XIII</option>
+                                                <option value="19"
+                                                    title="DIPARTIMENTO DI BOTANICA ED ECOLOGIA - Via Pontoni, Camerino">
+                                                    DIPARTIMENTO DI BOTANICA ED ECOLOGIA - Via Pontoni, Camerino
+                                                </option>
+                                                <option value="18"
+                                                    title="DIPARTIMENTO DI CHIMICA - Via San Agostino 1, Camerino">
+                                                    DIPARTIMENTO DI CHIMICA - Via San Agostino 1, Camerino</option>
+                                                <option value="14"
+                                                    title="DIPARTIMENTO DI FISICA - Via Madonna delle carceri n.9, Camerino">
+                                                    DIPARTIMENTO DI FISICA - Via Madonna delle carceri n.9, Camerino
+                                                </option>
+                                                <option value="13"
+                                                    title="DIPARTIMENTO DI SCIENZE DELLA TERRA - Via Gentile III da Varano, Camerino">
+                                                    DIPARTIMENTO DI SCIENZE DELLA TERRA - Via Gentile III da Varano,
+                                                    Camerino</option>
+                                                <option value="12"
+                                                    title="DIPARTIMENTO DI SCIENZE MORFOLOGICHE - Via Gentile III da Varano, Camerino">
+                                                    DIPARTIMENTO DI SCIENZE MORFOLOGICHE - Via Gentile III da Varano,
+                                                    Camerino</option>
+                                                <option value="25"
+                                                    title="DIPARTIMENTO MEDICINA SPERIMENTALE  - Via Madonna delle Carceri, Camerino">
+                                                    DIPARTIMENTO MEDICINA SPERIMENTALE - Via Madonna delle Carceri,
+                                                    Camerino</option>
+                                                <option value="9"
+                                                    title="FACOLTA' DI GIURISPRUDENZA - Palazzo Ducale - Via Cavour, 2 - Camerino">
+                                                    FACOLTA' DI GIURISPRUDENZA - Palazzo Ducale - Via Cavour, 2 -
+                                                    Camerino</option>
+                                                <option value="8"
+                                                    title="FACOLTA' DI MED. VETERINARIA - Osp.Veter.Didatt.-Loc.Casette S.Domenico-Mat...">
+                                                    FACOLTA' DI MED. VETERINARIA - Osp.Veter.Didatt.-Loc.Casette
+                                                    S.Domenico-Mat...</option>
+                                                <option value="7"
+                                                    title="FACOLTA' DI MEDIC. VETERINARIA - San Sollecito - Via Circonv.ne 93/95 - Mat...">
+                                                    FACOLTA' DI MEDIC. VETERINARIA - San Sollecito - Via Circonv.ne
+                                                    93/95 - Mat...</option>
+                                                <option value="4"
+                                                    title="FACOLTA' DI MEDICINA VETERINARIA - Edificio C ex SAIPEM - Via Fidanza - Mat...">
+                                                    FACOLTA' DI MEDICINA VETERINARIA - Edificio C ex SAIPEM - Via
+                                                    Fidanza - Mat...</option>
+                                                <option value="6"
+                                                    title="FACOLTA' DI MEDICINA VETERINARIA - Polo Didatt. Edif. B - Via Giovani - Mat...">
+                                                    FACOLTA' DI MEDICINA VETERINARIA - Polo Didatt. Edif. B - Via
+                                                    Giovani - Mat...</option>
+                                                <option value="5"
+                                                    title="FACOLTA' DI MEDICINA VETERINARIA - Polo Didatt. Edif. D - Via Giovani - Mat...">
+                                                    FACOLTA' DI MEDICINA VETERINARIA - Polo Didatt. Edif. D - Via
+                                                    Giovani - Mat...</option>
+                                                <option value="22"
+                                                    title="FACOLTA' DI SCIENZE E TECNOLOGIE - Polo Ascoli Piceno -Via P.Mazzoni - AP">
+                                                    FACOLTA' DI SCIENZE E TECNOLOGIE - Polo Ascoli Piceno -Via P.Mazzoni
+                                                    - AP</option>
+                                                <option value="21"
+                                                    title="FACOLTA' DI SCIENZE TECNOLOGICHE- Polo S. Benedetto - lungomare Scipioni">
+                                                    FACOLTA' DI SCIENZE TECNOLOGICHE- Polo S. Benedetto - lungomare
+                                                    Scipioni</option>
+                                                <option value="30" title="INFORMATICA - EX TRIBUNALE">INFORMATICA - EX
+                                                    TRIBUNALE</option>
+                                                <option value="17"
+                                                    title="POLO CARLA LODOVICI - Via Madonna delle carceri, Camerino"
+                                                    selected="">POLO CARLA LODOVICI - Via Madonna delle carceri,
+                                                    Camerino</option>
+                                                <option value="15" title="POLO D'AVACK, Camerino">POLO D'AVACK, Camerino
+                                                </option>
+                                                <option value="11"
+                                                    title="POLO DELLE SCIENZE (EX RETTORATO)-Via Gentile III da Varano, Camerino">
+                                                    POLO DELLE SCIENZE (EX RETTORATO)-Via Gentile III da Varano,
+                                                    Camerino</option>
+                                                <option value="24"
+                                                    title="POLO DI ALTA FORMAZIONE - Via Camillo Lili, 55 - Camerino">
+                                                    POLO DI ALTA FORMAZIONE - Via Camillo Lili, 55 - Camerino</option>
+                                                <option value="28" title="POLO DIDATTICO CAMPUS - VIA  A. D'ACCORSO">
+                                                    POLO DIDATTICO CAMPUS - VIA A. D'ACCORSO</option>
+                                                <option value="16"
+                                                    title="POLO GIACHETTA - Via Madonna delle carceri, Camerino">POLO
+                                                    GIACHETTA - Via Madonna delle carceri, Camerino</option>
+                                                <option value="27" title="POLO TECNOLOGICO- Palazzo Battibocca">POLO
+                                                    TECNOLOGICO- Palazzo Battibocca</option>
+                                                <option value="3" title="SCUOLA DI ARCHITETTURA E DESIGN">SCUOLA DI
+                                                    ARCHITETTURA E DESIGN</option>
+                                                <option value="2"
+                                                    title="SCUOLA DI ARCHITETTURA E DESIGN- Sede Annunziata - Ascoli Piceno">
+                                                    SCUOLA DI ARCHITETTURA E DESIGN- Sede Annunziata - Ascoli Piceno
+                                                </option>
+                                                <option value="1"
+                                                    title="SCUOLA DI ARCHITETTURA E DESIGN - Sede di Lungo Castellano - Ascoli Piceno">
+                                                    SCUOLA DI ARCHITETTURA E DESIGN - Sede di Lungo Castellano - Ascoli
+                                                    Piceno</option>
+                                                <option value="29"
+                                                    title="SCUOLA DI ARCHITETTURA E DESIGN - Sede di Sant'Angelo Magno - Ascoli Piceno">
+                                                    SCUOLA DI ARCHITETTURA E DESIGN - Sede di Sant'Angelo Magno - Ascoli
+                                                    Piceno</option>
+                                                <option value="10"
+                                                    title="SCUOLA DI SPECIALIZZAZIONE IN DIRITTO CIVILE-  Polo Granelli, Camerino">
+                                                    SCUOLA DI SPECIALIZZAZIONE IN DIRITTO CIVILE- Polo Granelli,
+                                                    Camerino</option>
+                                            </select>
+                                            
+                                            <span style="width: 20%; margin-left: 5px; display: none;" id="span_N2019B">
+                                                <!--<input height="20" alt="refresh" src="./Area Docente, Università di UNICAM_files/refresh.jpg" type="image">-->
+                                            </span>
+
+                                            <script>
+                                                var elem = document.getElementById('span_N2019B');
+                                                if (elem) { elem.style.display = 'none'; }
+                                            </script>
+
+                                        </td>
+                                    </tr>
+
+                                    <!--AULA-->
+                                    <tr>
+                                        <th class="tplForm" align="left">Aula:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" align="left" colspan="3">
+                                            <select class="tplForm" width=""cols="1"name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/aula_id"id="cmbAule1">
+                                                <option value="" title="-- selezionare --">-- selezionare --</option>
+                                                <option value="8" title=""></option>
+                                                <option value="1" title="aula AA1-videoconferenza-150 posti">aula AA1-videoconferenza-150 posti</option>
+                                                <option value="2" title="aula AB1 - 96 posti" selected="">aula AB1 - 96 posti</option>
+                                                <option value="3" title="aula AB2 - 96 posti">aula AB2 - 96 posti</option>
+                                                <option value="4" title="aula AB3 - 56 posti">aula AB3 - 56 posti</option>
+                                                <option value="5" title="aula LA1-  44 postazioni - thin client">aula LA1- 44 postazioni - thin client</option>
+                                                <option value="6" title="aula LA2 - 25 postazioni - computer">aula LA2 - 25 postazioni - computer</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <!--PARTIZIONAMENTO-->
+                                    <tr>
+                                        <th class="tplForm" align="left">Partizionamento:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" align="left" colspan="3">
+                                            <select class="tplForm" width=""cols="1" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/dom_part_cod">
+                                                <option value="AK__A1" title="Iniziali cognome A-L">Iniziali cognome A-L</option>
+                                                <option value="LZ__A1" title="Iniziali cognome M-Z">Iniziali cognome M-Z</option>
+                                                <option value="A10__A10" title="Recanati">Recanati</option>
+                                                <option value="AE__A11" title="alfabetico AE">alfabetico AE</option>
+                                                <option value="FL__A11" title="alfabetico FL">alfabetico FL</option>
+                                                <option value="MQ__A11" title="alfabetico MQ">alfabetico MQ</option>
+                                                <option value="RZ__A11" title="alfabetico RZ">alfabetico RZ</option>
+                                                <option value="AF__A2" title="Iniziali cognome A-F">Iniziali cognome A-F </option>
+                                                <option value="GO__A2" title="Iniziali cognome G-O">Iniziali cognome G-O</option>
+                                                <option value="PZ__A2" title="Iniziali cognome P-Z">Iniziali cognome P-Z</option>
+                                                <option value="2__A3" title="Ascoli">Ascoli</option>
+                                                <option value="1__A3" title="Camerino">Camerino</option>
+                                                <option value="1__A4" title="Ascoli">Ascoli</option>
+                                                <option value="2__A4" title="Narni">Narni</option>
+                                                <option value="1__A5" title="Camerino">Camerino</option>
+                                                <option value="2__A5" title="San Benedetto">San Benedetto</option>
+                                                <option value="3__A6" title="ASCOLI PICENO">ASCOLI PICENO</option>
+                                                <option value="1__A6" title="CAMERINO INIZIALE COGNOME AL">CAMERINO INIZIALE COGNOME AL</option>
+                                                <option value="2__A6" title="CAMERINO INIZIALE COGNOME MZ">CAMERINO INIZIALE COGNOME MZ</option>
+                                                <option value="1__A7" title="Camerino">Camerino</option>
+                                                <option value="2__A7" title="Recanati">Recanati</option>
+                                                <option value="A8__A8" title="Ascoli Piceno">Ascoli Piceno</option>
+                                                <option value="A9__A9" title="San Benedetto del Tronto">San Benedetto del Tronto</option>
+                                                <option value="ERASMUS__ERASMUS" title="appelli riservati agli erasmus"> appelli riservati agli erasmus</option>
+                                                <option value="GRP1__GR2" title="gruppo A">gruppo A</option>
+                                                <option value="GRP2__GR2" title="gruppo B">gruppo B</option>
+                                                <option value="A__GR3" title="gruppo A">gruppo A</option>
+                                                <option value="B__GR3" title="gruppo B">gruppo B</option>
+                                                <option value="C__GR3" title="gruppo C">gruppo C</option>
+                                                <option value="A__GRAB" title="gruppo A">gruppo A</option>
+                                                <option value="B__GRAB" title="gruppo B">gruppo B</option>
+                                                <option value="A__GRABCD" title="gruppo A">gruppo A</option>
+                                                <option value="B__GRABCD" title="gruppo B">gruppo B</option>
+                                                <option value="C__GRABCD" title="gruppo C">gruppo C</option>
+                                                <option value="D__GRABCD" title="gruppo D">gruppo D</option>
+                                                <option value="DISPARI__MATR" title="Matricole dispari">Matricole dispari</option>
+                                                <option value="PARI__MATR" title="Matricole pari">Matricole pari</option>
+                                                <option value="N0__N0" title="Nessun partizionamento" selected="">Nessun partizionamento</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+
+                                    <!--NUMERO MA POSTI-->
+                                    <tr>
+                                        <th class="tplForm" align="left">Numero max posti: <br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+
+                                        <td class="tplForm" align="left" colspan="3">
+                                            <input id="" class="tplForm" value="" size="5" maxlength="4" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/numero_max" type="text">
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="tplForm" style="height:5px;" align="left"></th>
+                                        <td class="tplForm" style="height:5px;" align="left" colspan="4"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th class="tplForm" style="height:35px;" align="left"></th>
+                                        <td class="tplForm" style="height:35px;" align="left" colspan="4"></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <br>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <table cellspacing="0" cellpadding="1" border="0" align="center">
+                                <tbody>
+                                    <tr>
+                                        <td id="" width="" valign="" colspan=""  rowspan="" class="tplFormSubmit">
+                                            <input class="tplFormSubmit" name="sbmDef" type="submit" value="Salva" onclick="return true;">
+                                        </td>
+                                        
+                                        <td id="" width="" valign="" colspan=""  rowspan="" class="tplFormSubmit">
+                                            <input class="tplFormSubmit" name="sbmNewApp" type="submit" value="Salva e aggiungi nuovo" onclick="return true;">
+                                        </td>
+
+                                        <td id="" width="" valign="" colspan=""  rowspan="" class="tplFormSubmit">
+                                            <input class="tplFormSubmit" name="" type="reset"value="Annulla" onclick="">
+                                        </td>
+
+                                        <td id="" width="" valign="" colspan=""  rowspan="" class="tplFormSubmit"><a class="tplFormSubmit" title=""
+                                                href="https://didattica.unicam.it/auth/docente/CalendarioEsami/ElencoAppelliCalEsa.do;jsessionid=1A0D318C6D758E0DC4AF884ED470C23F.esse3-unicam-prod-02?CDS_ID=10028&amp;AA_ID=2016&amp;AD_ID=8491&amp;MIN_AA_CAL_ID=0">Esci</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </form>
+    </div>
+</body>
+
+</html>
