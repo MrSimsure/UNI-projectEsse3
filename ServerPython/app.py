@@ -1,21 +1,28 @@
 #!/usr/bin/env python
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from server import *
+from server import server_send_file
 from db import *
 import inspect, os
+import urllib.parse
 
 dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
-print()
+
 class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
     def do_GET(self):
-        print(self.path)
         if self.path == "/" :
-            server_send_file(self ,dir+"\PaginaWeb\index.html")
-        else:
+            server_send_file(self ,dir+"/PaginaWeb/index.html")
+        else :
             server_send_file(self ,dir+'/'+self.path)
-
         return
+
+    def do_POST(self):
+        if self.path == '/sendData' :
+            content_length = int(self.headers['Content-Length']) 
+            post_data = self.rfile.read(content_length) 
+            dati = urllib.parse.parse_qs(post_data.decode('utf-8'))
+            print(dati)
+            print(dati["ogg"])
 
 def run():
     print('Avvio del server...')
