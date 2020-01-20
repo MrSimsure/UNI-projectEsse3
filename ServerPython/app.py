@@ -38,6 +38,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
 def run():
     print('Avvio del server...')
+    print(str(getAule("POLO DI FISICA %")))
     server_address = ('127.0.0.1', 8080)
     httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
     print('Server in esecuzione')
