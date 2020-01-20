@@ -8,9 +8,10 @@ connection = pymysql.connect(host='raspyexaequo.duckdns.org',
                              use_unicode='True',
                              cursorclass=pymysql.cursors.DictCursor)
 
-
+def getEdifici():
+    return
+    
 def getAule(edificio):
-
 
     with connection.cursor() as cursor:
 

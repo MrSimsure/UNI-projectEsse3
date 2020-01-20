@@ -4,7 +4,7 @@ import json
 
 mime = MimeTypes()
 
-def server_send_file(resp, file) :
+def sendFile(resp, file) :
 
     if os.path.exists(file):
         with open(file, 'r') as myfile:

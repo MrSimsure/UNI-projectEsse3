@@ -1,1 +1,1 @@
-nodemon Server/app.py
+npm nodemon Server/app.py
