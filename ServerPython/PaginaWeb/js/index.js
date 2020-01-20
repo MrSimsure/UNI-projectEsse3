@@ -8,11 +8,7 @@ function sendData(data)
     {
         if (request.readyState==4 && request.status==200)
         {
-            alert(request.status);
-        }
-        else
-        {
-            console.log("an error occurred")
+            console.log(JSON.parse(request.response))
         }
     }
     request.open("POST", "http://localhost:8080/sendData", true);
