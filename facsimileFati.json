@@ -1,0 +1,11 @@
+{
+    "data"              : "aa-mm-gg",
+    "ora"               : "hh-mm-ss",
+    "dal"               : "aa-mm-gg",
+    "al"                : "aa-mm-gg",
+    "desc"              : "nome materia",
+    "edificio"          : "nome polo",
+    "aula"              : "nome aula",
+    "partizionamento"   : "tipo partizionamento",
+    "commissione"       : "[nome,nome,nome]"
+}
