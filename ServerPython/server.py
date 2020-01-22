@@ -20,7 +20,6 @@ def sendFile(resp, file) :
 
 
 def sendData(resp, data):
-    print("sending")
     resp.send_response(200)
     resp.send_header('Content-type',"application/json")
     resp.end_headers()

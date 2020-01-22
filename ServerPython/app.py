@@ -7,6 +7,7 @@ import urllib.parse
 import json
 
 dir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+verbose = True
 
 class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
@@ -17,7 +18,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             sendFile(self ,dir+'/'+self.path)
         elif self.path.find("/getEdifici")  != -1:
             sendData(self, getEdifici())
-
+            if verbose: print("invio edifici")
         return
 
     def do_POST(self):
@@ -34,9 +35,11 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             self.send_header('Content-type','application/json')
             self.end_headers()
             self.wfile.write(bytes(ret, "utf8"))
+            if verbose: print("invio calcolo finale")
 
         elif self.path.find("/getAule") :
             #getAule()
+            if verbose: print("invio aule")
             return
 
 

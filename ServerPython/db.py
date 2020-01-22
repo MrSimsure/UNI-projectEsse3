@@ -27,7 +27,8 @@ def getEdifici():
             rt = cursor.fetchall()
 
             for record in edifici:
-                record['COMUNE_ID'] = str(rt[0]["DES"])
+                if str(record['COMUNE_ID']) == str(rt[0]["COMUNE_ID"]):
+                    record['COMUNE_ID'] = str(rt[0]["DES"])
         
         connection.commit()
         cursor.close()
