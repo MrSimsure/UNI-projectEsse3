@@ -9,7 +9,30 @@ connection = pymysql.connect(host='raspyexaequo.duckdns.org',
                              cursorclass=pymysql.cursors.DictCursor)
 
 def getEdifici():
-    return
+
+    with connection.cursor() as cursor:
+
+        cursor.execute("SELECT EDIFICIO_ID, DES, COMUNE_ID, VIA FROM P09_EDIFICI")
+        edifici = cursor.fetchall()
+
+        #crea la lista di id dei comuni
+        lista = []
+        for record in edifici:
+            item = record['COMUNE_ID']
+            if item is not None and item not in lista:
+                lista.append(item)
+
+        for i in range(len(lista)):
+            cursor.execute("SELECT DES,COMUNE_ID FROM P01_COMU WHERE COMUNE_ID like "+str(lista[i]))
+            rt = cursor.fetchall()
+
+            for record in edifici:
+                record['COMUNE_ID'] = str(rt[0]["DES"])
+        
+        connection.commit()
+        cursor.close()
+        return edifici
+        
     
 def getAule(edificio):
 

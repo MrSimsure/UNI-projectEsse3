@@ -59,12 +59,11 @@ function getAule(id, callback)
 
 function testSend()
 {
-    let obj = 
-    {
-        prova : 1,
-        ogg : "parole",
-        parapupu : 1121,
-    }
 
-    sendData(obj)
 }
+
+
+getEdifici(function(ret)
+{
+    window.EDIFICI = ret
+})

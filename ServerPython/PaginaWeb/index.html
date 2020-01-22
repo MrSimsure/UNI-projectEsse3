@@ -11,11 +11,14 @@
 
     <script src="/PaginaWeb/lib/jquery-3.4.1.min.js"></script>
     <script src="/PaginaWeb/lib/jquery-ui.js"></script>
-    <script src="/PaginaWeb/lib/datepicker-it.js"></script>
+    
     <script src="/PaginaWeb/lib/bootstrap.min.js"></script>
 
+    <script src="/PaginaWeb/lib/datepicker-it.js"></script>
+
+    <script src="/PaginaWeb/js/common.js"></script>
     <script src="/PaginaWeb/js/index.js"></script>
-    <!--<script src="/PaginaWeb/socket.io/socket.io.js"></script>-->
+
     
     <title>Esse3 2</title>
 </head>
@@ -82,30 +85,10 @@
                                             <input id="data_inizio_app" class="tplForm input_date hasDatepicker"
                                                 value="" size="10" maxlength="10"
                                                 name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_inizio_app"
-                                                type="text" onchange="setDiffDate(this.value,-241,'data_inizio_iscr');
+                                                type="date" onchange="setDiffDate(this.value,-241,'data_inizio_iscr');
                                                         setDiffDate(this.value,-1,'data_fine_iscr')"
                                                 autocomplete="off">
-                                            <script>
-                                                jQuery(".input_date").datepicker({
-                                                    dateFormat: "dd/mm/yy",
-                                                    changeMonth: true,
-                                                    changeYear: true,
-                                                    showButtonPanel: true,
-                                                    yearRange: "-100:+10",
-                                                    autoclose: true,
-                                                    monthNamesShort: jQuery.datepicker.regional["it"].monthNames,
-                                                    onSelect: function (d, i) {
-                                                        if (d !== i.lastVal) {
-                                                            try {
-                                                                jQuery(this).change();
-                                                            }
-                                                            catch (err) {
-                                                                console.log(err);
-                                                            }
-                                                        }
-                                                    }
-                                                });
-                                            </script>
+
                                             <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
                                         </td>
 
@@ -195,29 +178,8 @@
                                             <input id="data_inizio_iscr" class="tplForm input_date hasDatepicker"
                                                 value="" size="10" maxlength="10"
                                                 name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_inizio_iscr"
-                                                type="text" onchange="setDiffDate(this.value,+240,'data_fine_iscr');
+                                                type="date" onchange="setDiffDate(this.value,+240,'data_fine_iscr');
                                                     " autocomplete="off">
-                                            <script>
-                                                jQuery(".input_date").datepicker({
-                                                    dateFormat: "dd/mm/yy",
-                                                    changeMonth: true,
-                                                    changeYear: true,
-                                                    showButtonPanel: true,
-                                                    yearRange: "-100:+10",
-                                                    autoclose: true,
-                                                    monthNamesShort: jQuery.datepicker.regional["it"].monthNames,
-                                                    onSelect: function (d, i) {
-                                                        if (d !== i.lastVal) {
-                                                            try {
-                                                                jQuery(this).change();
-                                                            }
-                                                            catch (err) {
-                                                                console.log(err);
-                                                            }
-                                                        }
-                                                    }
-                                                });
-                                            </script>
                                             <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
                                         </td>
 
@@ -226,28 +188,7 @@
                                             <input id="data_fine_iscr" class="tplForm input_date hasDatepicker" value=""
                                                 size="10" maxlength="10"
                                                 name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_fine_iscr"
-                                                type="text" autocomplete="off">
-                                            <script>
-                                                jQuery(".input_date").datepicker({
-                                                    dateFormat: "dd/mm/yy",
-                                                    changeMonth: true,
-                                                    changeYear: true,
-                                                    showButtonPanel: true,
-                                                    yearRange: "-100:+10",
-                                                    autoclose: true,
-                                                    monthNamesShort: jQuery.datepicker.regional["it"].monthNames,
-                                                    onSelect: function (d, i) {
-                                                        if (d !== i.lastVal) {
-                                                            try {
-                                                                jQuery(this).change();
-                                                            }
-                                                            catch (err) {
-                                                                console.log(err);
-                                                            }
-                                                        }
-                                                    }
-                                                });
-                                            </script>
+                                                type="date" autocomplete="off">
                                             <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
                                         </td>
 

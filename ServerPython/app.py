@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from http.server import BaseHTTPRequestHandler, HTTPServer
-from server import sendFile
+from server import sendFile, sendData
 from db import getAule, getEdifici
 import inspect, os
 import urllib.parse
@@ -16,7 +16,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         elif self.path.find("/PaginaWeb") != -1:
             sendFile(self ,dir+'/'+self.path)
         elif self.path.find("/getEdifici")  != -1:
-            getEdifici()
+            sendData(self, getEdifici())
 
         return
 
@@ -43,7 +43,6 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
 def run():
     print('Avvio del server...')
-    print(str(getAule("POLO DI FISICA %")))
     server_address = ('127.0.0.1', 8080)
     httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
     print('Server in esecuzione')

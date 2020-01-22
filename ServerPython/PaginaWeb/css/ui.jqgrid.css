@@ -1,0 +1,59 @@
+@import url("../JavaScript/jquery/jqgrid/css/ui.jqgrid.css");
+
+/*----------------STILI PERSONALIZZATI ---------------------*/
+
+/* inizio modifiche riportate da jqGrid 4.8.0 */
+
+/* senza questi stili, in Firefox non viene visualizzato il bordo destro della barra di paginazione */
+.ui-jqgrid {
+	position: relative;
+	-moz-box-sizing: content-box;
+	-webkit-box-sizing: content-box;
+	box-sizing: content-box;
+}
+
+/* senza il border-collapse a separate, in Chrome viene mostrata la barra di scorrimento orizzontale */ 
+.ui-jqgrid .ui-jqgrid-htable {
+	table-layout:fixed;
+	margin:0;
+	border-collapse: separate;
+}
+
+/* senza il border-collapse a separate, in Chrome viene mostrata la barra di scorrimento orizzontale */
+.ui-jqgrid .ui-jqgrid-btable {
+	table-layout:fixed;
+	margin:0;
+	outline-style: none;
+	border-collapse: separate;
+}
+
+/* senza il border-collapse a separate, in Chrome viene mostrata la barra di scorrimento orizzontale */
+.ui-jqgrid .ui-jqgrid-ftable {
+	table-layout:fixed;
+	margin-bottom:0;
+	border-collapse: separate;
+}
+
+/* fine modifiche riportate da jqGrid 4.8.0 */
+
+.ui-jqgrid tr.jqgrow td {
+	font-weight: normal;
+	overflow: hidden;
+	white-space:normal;
+	height: 22px;
+	padding: 0 2px 0 2px;
+	word-wrap: break-word; /* IE 5.5+ and CSS3 */
+
+	}
+	
+.ui-jqgrid .ui-pg-table {
+	background-color:#F1F3F8;
+}
+
+div.ui-jqgrid-view table.ui-jqgrid-btable {
+  table-layout:fixed;
+}
+
+.ui-jqgrid tr.jqgfirstrow td {
+    padding: 0 2px !important;
+}

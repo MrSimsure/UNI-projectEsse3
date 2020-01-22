@@ -1,0 +1,20 @@
+/* nel caso sia definito autocomplete= off viene nascosta 
+l'icona di autocompletamento per safari
+https://gist.github.com/jeroenvisser101/9254cf27df85cf1c853aee17e4b49766
+*/
+input.tplForm[autocomplete="off"]::-webkit-contacts-auto-fill-button {
+  visibility: hidden;
+  display: none !important;
+  pointer-events: none;
+  height: 0;
+  width: 0;
+  margin: 0;
+}
+/* utilizzata nel calendario esami nella CalendarioEsamiConstants.xsl nel template= applista_modifica_voti*/
+.detail_table_red{
+	border: 1px dotted #929292;
+	line-height: 25px;
+	padding: 2px;
+	color: red;
+	font-size: 0.9em;
+}
