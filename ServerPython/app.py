@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from server import sendFile, sendData
-from db import getAule, getEdifici
+from db import getAule, getEdifici, getDocenti
 import inspect, os
 import urllib.parse
 import json
@@ -25,7 +25,6 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length']) 
         post_data = self.rfile.read(content_length) 
         dati = urllib.parse.parse_qsl(post_data.decode('utf-8'))
-        print(dati[0][1])
 
         if self.path == '/sendData' :
             sql = { "testname" : "akshat", "test2name" : "manjeet", "test3name" : "nikhil"} 
@@ -37,9 +36,14 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             self.wfile.write(bytes(ret, "utf8"))
             if verbose: print("invio calcolo finale")
 
-        elif self.path.find("/getAule") :
-            #getAule()
-            if verbose: print("invio aule")
+        elif self.path.find("/getAule") != -1:
+            sendData(self, getAule(dati[0][1]))
+            if verbose: print("invio aule per edificio con id ", str(dati[0][1]))
+            return
+
+        elif self.path.find("/getDocenti") != -1:
+            sendData(self, getDocenti( dati[0][1], dati[1][1], dati[2][1] ))
+            if verbose: print("invio aule per edificio con id ", str(dati[0][1]))
             return
 
 

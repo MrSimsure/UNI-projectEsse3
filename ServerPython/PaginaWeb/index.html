@@ -131,41 +131,8 @@
 
                                     </tr>
 
-                                    <!--VERBALIZZAZIONE-->
-                                    <tr>
-                                        <th class="tplForm" style="background-color : #DBDBDB;" align="left">
-                                            *Verbalizzazione:<br>
-                                            <span class="tplFormNote"></span>
-                                        </th>
 
-                                        <td class="tplForm" style="background-color : #DBDBDB;" align="left"
-                                            colspan="3">
-                                            <select class="tplForm" width="" cols="1"
-                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/tipo_gest_app_cod">
-                                                <option value="FWS" title="Appello Firma Digitale" selected="">Appello
-                                                    Firma Digitale</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-
-                                    <!--TIPO ESAME-->
-                                    <tr>
-                                        <th class="tplForm" style="background-color : #DBDBDB;" align="left">Tipo esame:
-                                            <br>
-                                            <span class="tplFormNote"></span>
-                                        </th>
-
-                                        <td class="tplForm" style="background-color : #DBDBDB;" align="left"
-                                            colspan="3">
-                                            <input value="S"
-                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/tipo_iscr_cod_prev"
-                                                type="radio" checked="">Scritto<br>
-                                            <input value="O"
-                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/tipo_iscr_cod_prev"
-                                                type="radio">Orale<br>
-                                        </td>
-                                    </tr>
-
+                                    
                                     <!--ISCRIZIONI DAL AL-->
                                     <tr>
 
@@ -207,49 +174,6 @@
                                         </td>
                                     </tr>
 
-                                    <!--PRENOTABILE DA-->
-                                    <tr>
-                                        <th class="tplForm" align="left">Prenotabile da:<br>
-                                            <span class="tplFormNote"></span>
-                                        </th>
-
-                                        <td class="tplForm" align="left" colspan="3">
-                                            <select class="tplForm" width="" cols="1"
-                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/cond_id">
-                                                <option value="" title="tutti">tutti</option>
-                                                <option value="80084" title="abilita sessione unica per corsi singoli">
-                                                    abilita sessione unica per corsi singoli</option>
-                                                <option value="80097" title="calcola sessione per ad = ofa">calcola
-                                                    sessione per ad = ofa</option>
-                                            </select>
-                                        </td>
-                                    </tr>
-
-                                    <!--NOTE-->
-                                    <tr>
-                                        <th class="tplForm" align="left">Note:<br>
-                                            <span class="tplFormNote"></span>
-                                        </th>
-
-                                        <td class="tplForm" align="left" colspan="3">
-                                            <textarea class="tplForm"
-                                                name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/note"
-                                                cols="74" rows="4"></textarea>
-                                        </td>
-                                    </tr>
-
-                                    <!--SESSIONI-->
-                                    <tr>
-                                        <th class="tplForm" align="left">Sessioni:<br>
-                                            <span class="tplFormNote"></span>
-                                        </th>
-
-                                        <td class="tplForm" align="left" colspan="4">
-                                            <select class="tplForm" width="" cols="1" name="SES_ID_AA_SES_ID" size="4"
-                                                multiple=""> </select>
-                                        </td>
-                                    </tr>
-
                                     <!--APPELO RISERVATO AL DOCENTE-->
                                     <tr>
                                         <th class="tplForm" align="left">Appello riservato al docente:<br>
@@ -277,108 +201,11 @@
                                         <th class="tplForm" align="left">Edificio:<br>
                                             <span class="tplFormNote"></span>
                                         </th>
+   
+                                        <td class="tplForm" align="left" colspan="3">
 
-                                        <td class="tplForm" align="left" colspan="3"><select class="tplForm" width="" cols="1" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/edificio_id"onchange="loadElencoAule(this.value,'cmbAule1')">
+                                            <select class="tplForm" width="" cols="1" style="width: 700px;" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/edificio_id" onchange="onChangeEdificio(this.value)">
                                                 <option value="" title="-- selezionare --">-- selezionare --</option>
-                                                <option value="20" title=""></option>
-                                                <option value="31" title="CAMPUS">CAMPUS</option>
-                                                <option value="26" title="CENTRO CULTURALE BENEDETTO XIII">CENTRO
-                                                    CULTURALE BENEDETTO XIII</option>
-                                                <option value="19"
-                                                    title="DIPARTIMENTO DI BOTANICA ED ECOLOGIA - Via Pontoni, Camerino">
-                                                    DIPARTIMENTO DI BOTANICA ED ECOLOGIA - Via Pontoni, Camerino
-                                                </option>
-                                                <option value="18"
-                                                    title="DIPARTIMENTO DI CHIMICA - Via San Agostino 1, Camerino">
-                                                    DIPARTIMENTO DI CHIMICA - Via San Agostino 1, Camerino</option>
-                                                <option value="14"
-                                                    title="DIPARTIMENTO DI FISICA - Via Madonna delle carceri n.9, Camerino">
-                                                    DIPARTIMENTO DI FISICA - Via Madonna delle carceri n.9, Camerino
-                                                </option>
-                                                <option value="13"
-                                                    title="DIPARTIMENTO DI SCIENZE DELLA TERRA - Via Gentile III da Varano, Camerino">
-                                                    DIPARTIMENTO DI SCIENZE DELLA TERRA - Via Gentile III da Varano,
-                                                    Camerino</option>
-                                                <option value="12"
-                                                    title="DIPARTIMENTO DI SCIENZE MORFOLOGICHE - Via Gentile III da Varano, Camerino">
-                                                    DIPARTIMENTO DI SCIENZE MORFOLOGICHE - Via Gentile III da Varano,
-                                                    Camerino</option>
-                                                <option value="25"
-                                                    title="DIPARTIMENTO MEDICINA SPERIMENTALE  - Via Madonna delle Carceri, Camerino">
-                                                    DIPARTIMENTO MEDICINA SPERIMENTALE - Via Madonna delle Carceri,
-                                                    Camerino</option>
-                                                <option value="9"
-                                                    title="FACOLTA' DI GIURISPRUDENZA - Palazzo Ducale - Via Cavour, 2 - Camerino">
-                                                    FACOLTA' DI GIURISPRUDENZA - Palazzo Ducale - Via Cavour, 2 -
-                                                    Camerino</option>
-                                                <option value="8"
-                                                    title="FACOLTA' DI MED. VETERINARIA - Osp.Veter.Didatt.-Loc.Casette S.Domenico-Mat...">
-                                                    FACOLTA' DI MED. VETERINARIA - Osp.Veter.Didatt.-Loc.Casette
-                                                    S.Domenico-Mat...</option>
-                                                <option value="7"
-                                                    title="FACOLTA' DI MEDIC. VETERINARIA - San Sollecito - Via Circonv.ne 93/95 - Mat...">
-                                                    FACOLTA' DI MEDIC. VETERINARIA - San Sollecito - Via Circonv.ne
-                                                    93/95 - Mat...</option>
-                                                <option value="4"
-                                                    title="FACOLTA' DI MEDICINA VETERINARIA - Edificio C ex SAIPEM - Via Fidanza - Mat...">
-                                                    FACOLTA' DI MEDICINA VETERINARIA - Edificio C ex SAIPEM - Via
-                                                    Fidanza - Mat...</option>
-                                                <option value="6"
-                                                    title="FACOLTA' DI MEDICINA VETERINARIA - Polo Didatt. Edif. B - Via Giovani - Mat...">
-                                                    FACOLTA' DI MEDICINA VETERINARIA - Polo Didatt. Edif. B - Via
-                                                    Giovani - Mat...</option>
-                                                <option value="5"
-                                                    title="FACOLTA' DI MEDICINA VETERINARIA - Polo Didatt. Edif. D - Via Giovani - Mat...">
-                                                    FACOLTA' DI MEDICINA VETERINARIA - Polo Didatt. Edif. D - Via
-                                                    Giovani - Mat...</option>
-                                                <option value="22"
-                                                    title="FACOLTA' DI SCIENZE E TECNOLOGIE - Polo Ascoli Piceno -Via P.Mazzoni - AP">
-                                                    FACOLTA' DI SCIENZE E TECNOLOGIE - Polo Ascoli Piceno -Via P.Mazzoni
-                                                    - AP</option>
-                                                <option value="21"
-                                                    title="FACOLTA' DI SCIENZE TECNOLOGICHE- Polo S. Benedetto - lungomare Scipioni">
-                                                    FACOLTA' DI SCIENZE TECNOLOGICHE- Polo S. Benedetto - lungomare
-                                                    Scipioni</option>
-                                                <option value="30" title="INFORMATICA - EX TRIBUNALE">INFORMATICA - EX
-                                                    TRIBUNALE</option>
-                                                <option value="17"
-                                                    title="POLO CARLA LODOVICI - Via Madonna delle carceri, Camerino"
-                                                    selected="">POLO CARLA LODOVICI - Via Madonna delle carceri,
-                                                    Camerino</option>
-                                                <option value="15" title="POLO D'AVACK, Camerino">POLO D'AVACK, Camerino
-                                                </option>
-                                                <option value="11"
-                                                    title="POLO DELLE SCIENZE (EX RETTORATO)-Via Gentile III da Varano, Camerino">
-                                                    POLO DELLE SCIENZE (EX RETTORATO)-Via Gentile III da Varano,
-                                                    Camerino</option>
-                                                <option value="24"
-                                                    title="POLO DI ALTA FORMAZIONE - Via Camillo Lili, 55 - Camerino">
-                                                    POLO DI ALTA FORMAZIONE - Via Camillo Lili, 55 - Camerino</option>
-                                                <option value="28" title="POLO DIDATTICO CAMPUS - VIA  A. D'ACCORSO">
-                                                    POLO DIDATTICO CAMPUS - VIA A. D'ACCORSO</option>
-                                                <option value="16"
-                                                    title="POLO GIACHETTA - Via Madonna delle carceri, Camerino">POLO
-                                                    GIACHETTA - Via Madonna delle carceri, Camerino</option>
-                                                <option value="27" title="POLO TECNOLOGICO- Palazzo Battibocca">POLO
-                                                    TECNOLOGICO- Palazzo Battibocca</option>
-                                                <option value="3" title="SCUOLA DI ARCHITETTURA E DESIGN">SCUOLA DI
-                                                    ARCHITETTURA E DESIGN</option>
-                                                <option value="2"
-                                                    title="SCUOLA DI ARCHITETTURA E DESIGN- Sede Annunziata - Ascoli Piceno">
-                                                    SCUOLA DI ARCHITETTURA E DESIGN- Sede Annunziata - Ascoli Piceno
-                                                </option>
-                                                <option value="1"
-                                                    title="SCUOLA DI ARCHITETTURA E DESIGN - Sede di Lungo Castellano - Ascoli Piceno">
-                                                    SCUOLA DI ARCHITETTURA E DESIGN - Sede di Lungo Castellano - Ascoli
-                                                    Piceno</option>
-                                                <option value="29"
-                                                    title="SCUOLA DI ARCHITETTURA E DESIGN - Sede di Sant'Angelo Magno - Ascoli Piceno">
-                                                    SCUOLA DI ARCHITETTURA E DESIGN - Sede di Sant'Angelo Magno - Ascoli
-                                                    Piceno</option>
-                                                <option value="10"
-                                                    title="SCUOLA DI SPECIALIZZAZIONE IN DIRITTO CIVILE-  Polo Granelli, Camerino">
-                                                    SCUOLA DI SPECIALIZZAZIONE IN DIRITTO CIVILE- Polo Granelli,
-                                                    Camerino</option>
                                             </select>
                                             
                                             <span style="width: 20%; margin-left: 5px; display: none;" id="span_N2019B">
@@ -400,15 +227,8 @@
                                         </th>
 
                                         <td class="tplForm" align="left" colspan="3">
-                                            <select class="tplForm" width=""cols="1"name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/aula_id"id="cmbAule1">
+                                            <select class="tplForm" width=""cols="1"name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/aula_id" id="cmbAule1" style="width: 400px;">
                                                 <option value="" title="-- selezionare --">-- selezionare --</option>
-                                                <option value="8" title=""></option>
-                                                <option value="1" title="aula AA1-videoconferenza-150 posti">aula AA1-videoconferenza-150 posti</option>
-                                                <option value="2" title="aula AB1 - 96 posti" selected="">aula AB1 - 96 posti</option>
-                                                <option value="3" title="aula AB2 - 96 posti">aula AB2 - 96 posti</option>
-                                                <option value="4" title="aula AB3 - 56 posti">aula AB3 - 56 posti</option>
-                                                <option value="5" title="aula LA1-  44 postazioni - thin client">aula LA1- 44 postazioni - thin client</option>
-                                                <option value="6" title="aula LA2 - 25 postazioni - computer">aula LA2 - 25 postazioni - computer</option>
                                             </select>
                                         </td>
                                     </tr>
@@ -463,17 +283,6 @@
                                         </td>
                                     </tr>
 
-                                    <!--NUMERO MA POSTI-->
-                                    <tr>
-                                        <th class="tplForm" align="left">Numero max posti: <br>
-                                            <span class="tplFormNote"></span>
-                                        </th>
-
-                                        <td class="tplForm" align="left" colspan="3">
-                                            <input id="" class="tplForm" value="" size="5" maxlength="4" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/numero_max" type="text">
-                                        </td>
-                                    </tr>
-
                                     <tr>
                                         <th class="tplForm" style="height:5px;" align="left"></th>
                                         <td class="tplForm" style="height:5px;" align="left" colspan="4"></td>
@@ -491,31 +300,7 @@
                         </td>
                     </tr>
 
-                    <tr>
-                        <td>
-                            <table cellspacing="0" cellpadding="1" border="0" align="center">
-                                <tbody>
-                                    <tr>
-                                        <td id="" width="" valign="" colspan=""  rowspan="" class="tplFormSubmit">
-                                            <input class="tplFormSubmit" name="sbmDef" type="submit" value="Salva" onclick="return true;">
-                                        </td>
-                                        
-                                        <td id="" width="" valign="" colspan=""  rowspan="" class="tplFormSubmit">
-                                            <input class="tplFormSubmit" name="sbmNewApp" type="submit" value="Salva e aggiungi nuovo" onclick="return true;">
-                                        </td>
 
-                                        <td id="" width="" valign="" colspan=""  rowspan="" class="tplFormSubmit">
-                                            <input class="tplFormSubmit" name="" type="reset"value="Annulla" onclick="">
-                                        </td>
-
-                                        <td id="" width="" valign="" colspan=""  rowspan="" class="tplFormSubmit"><a class="tplFormSubmit" title=""
-                                                href="https://didattica.unicam.it/auth/docente/CalendarioEsami/ElencoAppelliCalEsa.do;jsessionid=1A0D318C6D758E0DC4AF884ED470C23F.esse3-unicam-prod-02?CDS_ID=10028&amp;AA_ID=2016&amp;AD_ID=8491&amp;MIN_AA_CAL_ID=0">Esci</a>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
 
                 </tbody>
             </table>

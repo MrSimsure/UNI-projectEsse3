@@ -38,12 +38,41 @@ def getEdifici():
 def getAule(edificio):
 
     with connection.cursor() as cursor:
+        
+        cursor.execute("SELECT DES, AULA_ID, CAPIENZA FROM P09_AULE WHERE EDIFICIO_ID like %s", str(edificio))
+        data = cursor.fetchall()
+        connection.commit()
+        cursor.close()
+        return data
 
-        cursor.execute("SELECT EDIFICIO_ID FROM P09_EDIFICI WHERE DES like %s", (str(edificio)))
-        idEdificio = cursor.fetchall()
 
+def getDocenti(matricola, nome, cognome):
 
-        cursor.execute("SELECT DES FROM P09_AULE WHERE EDIFICIO_ID like %s", idEdificio[0]["EDIFICIO_ID"])
+    with connection.cursor() as cursor:
+        
+        ricerca = "SELECT nome, cognome FROM docenti"
+
+        if nome != " " or cognome != " " or matricola != " ":
+            ricerca += " WHERE"
+            
+        if nome != " ":
+            ricerca += " "+"nome like '%"+nome+"%'"
+
+        if nome != " " and cognome != " ":
+            ricerca += " and"
+
+        if cognome != " ":
+            ricerca += " "+"cognome like '%"+cognome+"%'"
+
+        if cognome != " " and matricola != " ":
+            ricerca += " and "
+
+        if matricola != " ":
+            ricerca += " "+"matricola like '%"+matricola+"%'"
+
+        print(ricerca)
+
+        cursor.execute(ricerca)
         data = cursor.fetchall()
         connection.commit()
         cursor.close()
