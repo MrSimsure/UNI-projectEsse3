@@ -4,15 +4,33 @@
  * @param {object} data 
  * @param {function} callback 
  */
-function sendData(data, callback)
+function sendData(callback)
 {
+    //collezziona dati
+    let commis = dati_commis.innerHTML.split(", ");
+    commis.pop()
+
+    var dati = 
+    {
+        data              : dati_data.value,
+        ora               : dati_ora.value+":"+dati_minuti.value,
+        dal               : dati_iscr_da.value,
+        al                : dati_iscr_a.value,
+        desc              : dati_desc.value,
+        edificio          : dati_edificio.value,
+        aula              : dati_aula.value,
+        partizionamento   : dati_partiz.value,
+        commissione       : commis
+    }
+
+    console.log(dati)
+
+    //invio
     var request = new XMLHttpRequest();
     request.onreadystatechange=function()
     {
         if (request.readyState==4 && request.status==200)
         {
-            console.log(JSON.parse(request.response))
-
             if(callback != undefined)
             {
                 callback(JSON.parse(request.response));
@@ -21,7 +39,7 @@ function sendData(data, callback)
     }
     request.open("POST", "http://localhost:8080/sendData", true);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send( $.param(data) );
+    request.send( $.param(dati) );
 }
 
 /**
@@ -183,10 +201,62 @@ function onChangeEdificio(id)
     })
 }
 
+/**
+ * Evento quando vience cliccato un docente dalla lista per aggiungerlo alla commissione
+ * @param {string} nome 
+ */
+function onSelectDocente(nome)
+{
+    dati_commis.innerHTML += nome+", "
+}
+
+
+/**
+ * Evento quando viene scritto qualcosa nei campi matricola, nome e cognome nella ricerca dei docenti per la commissione
+ */
+function onChangeDocenti()
+{
+    let matr = document.querySelector("#doc_matr").value;
+    let nome = document.querySelector("#doc_nome").value;
+    let cogn = document.querySelector("#doc_cogn").value;
+    
+    if(matr == "") {matr = " "}
+    if(nome == "") {nome = " "}
+    if(cogn == "") {cogn = " "}
+
+    getDocenti(matr,nome,cogn,function(ret)
+    {
+        lista.innerHTML = ""
+
+        for(let i=0; i<ret.length; i++)
+        {
+            let docente = ret[i];
+
+            let temp = toClone.cloneNode(true);
+            let clone = lista.appendChild(temp);
+            clone.innerHTML = docente.nome+" "+docente.cognome
+        }
+        
+    })
+}
 
 
 window.onload = function(e)
 { 
+    toClone         =   document.getElementById("doc_docente").content.querySelector("li");
+    lista           =   document.getElementById("doc_lista");
+
+    dati_data       =    document.getElementById("data_inizio_app");
+    dati_ora        =    document.getElementById("ora_inizio");
+    dati_minuti     =    document.getElementById("minuti_inizio");
+    dati_iscr_da    =    document.getElementById("data_inizio_iscr");
+    dati_iscr_a     =    document.getElementById("data_fine_iscr");
+    dati_desc       =    document.getElementById("descr_appello");
+    dati_edificio   =    document.getElementById("edificio_appello");
+    dati_aula       =    document.getElementById("cmbAule1");
+    dati_partiz     =    document.getElementById("partiz_appello");
+    dati_commis     =    document.getElementById("commissione");
+
     getEdifici(function(ret)
     {
         updateEdifici(ret)

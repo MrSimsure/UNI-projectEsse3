@@ -24,9 +24,56 @@
 </head>
 
 <body style="width: 100%; height: 100%;">
-    <button onclick="testSend()">
-        TEST POST
-    </button>
+
+    <template id="doc_docente">
+        <li class="list-group-item" style="padding:0 !important; cursor: pointer;" data-dismiss="modal" onclick="onSelectDocente(this.innerHTML); sendData()"></li>
+    </template>
+
+    <div class="modal" tabindex="-1" role="dialog" id="modal_docenti">
+        <div class="modal-dialog modal-lg" role="document" style="max-width: 700px;">
+          <div class="modal-content">
+
+            <div class="modal-header">
+              <h5 class="modal-title">Aggiunta Docenti</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+            <div class="modal-body">
+                <table width="" cellspacing="0" cellpadding="20" border="0">
+                <tbody>
+                    <tr>
+                        <th class="tplForm" align="left" colspan="3">
+                            <a>matricola</a><br>
+                            <input id="doc_matr" oninput="onChangeDocenti()" type="text">
+                        </th>
+                        <td class="tplForm" align="left" colspan="3">
+                            <a>nome</a><br>
+                            <input id="doc_nome" oninput="onChangeDocenti()" type="text">
+                        </td>
+                        <td class="tplForm" align="left" colspan="3">
+                            <a>cognome</a><br>
+                            <input id="doc_cogn" oninput="onChangeDocenti()" type="text">
+                        </td>
+                    </tr>
+                </tbody>
+                </table>
+
+                <br><br>
+
+                <ul class="list-group" id="doc_lista">
+                </ul>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+            </div>
+
+          </div>
+        </div>
+    </div>
+
     <div class="parent justify-content-center">
         <form name="" target="_self" method="post"
             action="https://didattica.unicam.it/auth/docente/CalendarioEsami/InserisciAggiornaAppelloCalEsaSubmit.do;jsessionid=1A0D318C6D758E0DC4AF884ED470C23F.esse3-unicam-prod-02"
@@ -86,7 +133,7 @@
                                                 value="" size="10" maxlength="10"
                                                 name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_inizio_app"
                                                 type="date" onchange="setDiffDate(this.value,-241,'data_inizio_iscr');
-                                                        setDiffDate(this.value,-1,'data_fine_iscr')"
+                                                        setDiffDate(this.value,-1,'data_fine_iscr'); sendData()"
                                                 autocomplete="off">
 
                                             <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
@@ -98,7 +145,7 @@
                                         </th>
 
                                         <td class="tplForm" style="background-color : #DBDBDB;" align="left">
-                                            <select class="tplForm" width="" cols="1" name="hh_esa">
+                                            <select class="tplForm" width="" cols="1" name="hh_esa" id="ora_inizio" onchange="sendData()">
                                                 <option value=""></option>
                                                 <option value="08">8</option>
                                                 <option value="09">9</option>
@@ -120,7 +167,7 @@
 
                                             &nbsp;:&nbsp;
 
-                                            <select class="tplForm" width="" cols="1" name="mm_esa">
+                                            <select class="tplForm" width="" cols="1" name="mm_esa" id="minuti_inizio" onchange="sendData()">
                                                 <option value=""></option>
                                                 <option value="00">00</option>
                                                 <option value="15">15</option>
@@ -145,8 +192,8 @@
                                             <input id="data_inizio_iscr" class="tplForm input_date hasDatepicker"
                                                 value="" size="10" maxlength="10"
                                                 name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_inizio_iscr"
-                                                type="date" onchange="setDiffDate(this.value,+240,'data_fine_iscr');
-                                                    " autocomplete="off">
+                                                type="date" onchange="setDiffDate(this.value,+240,'data_fine_iscr'); sendData()" 
+                                                autocomplete="off">
                                             <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
                                         </td>
 
@@ -154,6 +201,7 @@
 
                                             <input id="data_fine_iscr" class="tplForm input_date hasDatepicker" value=""
                                                 size="10" maxlength="10"
+                                                onchange="sendData()"
                                                 name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/data_fine_iscr"
                                                 type="date" autocomplete="off">
                                             <span style="font-size: 10px;">&nbsp;(gg/mm/aaaa)</span>
@@ -168,9 +216,9 @@
                                         </th>
 
                                         <td class="tplForm" align="left" colspan="3">
-                                            <input id="" class="tplForm" value="Basi di Dati" size="40" maxlength="40"
+                                            <input id="descr_appello" class="tplForm" value="Basi di Dati" size="40" maxlength="40"
                                                 name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/des"
-                                                type="text">
+                                                type="text" onchange="sendData()">
                                         </td>
                                     </tr>
 
@@ -183,6 +231,23 @@
                                             <input class="tplForm" value="1" name="/WS/DataSet[@LocalEntityName='APP_CAL_ESA_WEB']/Row/riservato_flg" type="checkbox">
                                         </td>
                                     </tr>
+
+                                    <!--COMMISSIONE DOCENTI-->
+                                    <tr>
+                                        <th class="tplForm" align="left"><br>
+                                            <a style="font-size: 14px; cursor: pointer;" data-toggle="modal" data-target="#modal_docenti">aggiungi docente +</a>
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        <th class="tplForm" align="left">Commissione:<br>
+                                            <span class="tplFormNote"></span>
+                                        </th>
+                                        <td class="tplForm" align="left" colspan="3">
+                                            <a id="commissione"></a>
+                                        </td>
+                                    </tr>
+
+                                    
 
                                     <tr>
                                         <th class="tplForm" style="height:15px;" align="left"></th>
@@ -204,7 +269,7 @@
    
                                         <td class="tplForm" align="left" colspan="3">
 
-                                            <select class="tplForm" width="" cols="1" style="width: 700px;" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/edificio_id" onchange="onChangeEdificio(this.value)">
+                                            <select id="edificio_appello" class="tplForm" width="" cols="1" style="width: 700px;" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/edificio_id" onchange="onChangeEdificio(this.value); sendData()">
                                                 <option value="" title="-- selezionare --">-- selezionare --</option>
                                             </select>
                                             
@@ -227,7 +292,7 @@
                                         </th>
 
                                         <td class="tplForm" align="left" colspan="3">
-                                            <select class="tplForm" width=""cols="1"name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/aula_id" id="cmbAule1" style="width: 400px;">
+                                            <select  onchange="sendData()" class="tplForm" width=""cols="1"name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/aula_id" id="cmbAule1" style="width: 400px;">
                                                 <option value="" title="-- selezionare --">-- selezionare --</option>
                                             </select>
                                         </td>
@@ -240,7 +305,7 @@
                                         </th>
 
                                         <td class="tplForm" align="left" colspan="3">
-                                            <select class="tplForm" width=""cols="1" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/dom_part_cod">
+                                            <select id="partiz_appello" class="tplForm" width=""cols="1" name="/WS/DataSet[@LocalEntityName='APP_LOG_DATI_WEB']/Row[@Num='1']/dom_part_cod" onchange="sendData()">
                                                 <option value="AK__A1" title="Iniziali cognome A-L">Iniziali cognome A-L</option>
                                                 <option value="LZ__A1" title="Iniziali cognome M-Z">Iniziali cognome M-Z</option>
                                                 <option value="A10__A10" title="Recanati">Recanati</option>
