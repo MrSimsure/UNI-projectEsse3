@@ -8,6 +8,8 @@ connection = pymysql.connect(host='raspyexaequo.duckdns.org',
                              use_unicode='True',
                              cursorclass=pymysql.cursors.DictCursor)
 
+
+## RITORNA DAL DATABASE LA LISTA DEGLI EDIFICI DELL'ATENEO
 def getEdifici():
 
     with connection.cursor() as cursor:
@@ -34,7 +36,8 @@ def getEdifici():
         cursor.close()
         return edifici
         
-    
+
+## RITORNA DAL DATABASE LA LISTA DELLE AULE APPARTENENTI AD UN DETERMINATO EDIFICIO DATO IL SUO ID
 def getAule(edificio):
 
     with connection.cursor() as cursor:
@@ -45,7 +48,7 @@ def getAule(edificio):
         cursor.close()
         return data
 
-
+## RITORNA DAL DATABASE LA LISTA DI DOCENTI APPLICANDO COME FILTRI MATRICOLA, NOME O COGNOME SE QUESTI SONO DATI COME ARGOMENTI
 def getDocenti(matricola, nome, cognome):
 
     with connection.cursor() as cursor:

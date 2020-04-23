@@ -1,3 +1,6 @@
+var ip = "localhost"// "192.168.43.32"
+var port = "8080"
+
 
 /**
  * Invia al server tutti i dati inseriti e attende il ritorno della valutazione
@@ -37,7 +40,7 @@ function sendData(callback)
             }
         }
     }
-    request.open("POST", "http://localhost:8080/sendData", true);
+    request.open("POST", "http://"+ip+":"+port+"/sendData", true);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send( $.param(dati) );
 }
@@ -77,7 +80,7 @@ function getEdifici(callback)
             }
         }
     }
-    request.open("GET", "http://localhost:8080/getEdifici", true);
+    request.open("GET", "http://"+ip+":"+port+"/getEdifici", true);
     request.send();
 }
 
@@ -100,7 +103,7 @@ function getAule(id, callback)
             }
         }
     }
-    request.open("POST", "http://localhost:8080/getAule", true);
+    request.open("POST", "http://"+ip+":"+port+"/getAule", true);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     request.send( $.param({id}) );
 }
@@ -124,7 +127,7 @@ function getDocenti(matricola, nome, cognome, callback)
             }
         }
     }
-    request.open("POST", "http://localhost:8080/getDocenti", true);
+    request.open("POST", "http://"+ip+":"+port+"/getDocenti", true);
     request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     let obj = {matricola:matricola, nome:nome, cognome:cognome}
     request.send( $.param(obj) );

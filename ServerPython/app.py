@@ -11,16 +11,22 @@ verbose = True
 
 class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
+    ## HANDLER DELLE CHIAMATE GET AL SERVER - richiesta file della pagina web - lista edifici
     def do_GET(self):
+        
         if self.path == "/" :
             sendFile(self ,dir+"/PaginaWeb/index.html")
+
         elif self.path.find("/PaginaWeb") != -1:
             sendFile(self ,dir+'/'+self.path)
+
         elif self.path.find("/getEdifici")  != -1:
             sendData(self, getEdifici())
             if verbose: print("invio edifici")
+
         return
 
+    ## HANDLER DELLE CHIAMATE POST AL SERVER - calcolo dati finali - lista aule - lista docenti
     def do_POST(self):
         content_length = int(self.headers['Content-Length']) 
         post_data = self.rfile.read(content_length) 
@@ -50,7 +56,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
 def run():
     print('Avvio del server...')
-    server_address = ('127.0.0.1', 8080)
+    server_address = ('localhost', 8080)
     httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
     print('Server in esecuzione')
     httpd.serve_forever()

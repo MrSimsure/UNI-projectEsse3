@@ -4,6 +4,7 @@ import json
 
 mime = MimeTypes()
 
+## RITORNA UN FILE AL CLIENT, DA USARE DOPO UNA RICHIESTA GET O POST
 def sendFile(resp, file) :
 
     if os.path.exists(file):
@@ -18,7 +19,7 @@ def sendFile(resp, file) :
 
 
 
-
+## RITORNA UN JSON AL CLIENT, DA USARE DOPO UNA RICHIESTA GET O POST
 def sendData(resp, data):
     resp.send_response(200)
     resp.send_header('Content-type',"application/json")
