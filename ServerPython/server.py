@@ -22,6 +22,8 @@ def sendFile(resp, file) :
 ## RITORNA UN JSON AL CLIENT, DA USARE DOPO UNA RICHIESTA GET O POST
 def sendData(resp, data):
     resp.send_response(200)
+    resp.send_header('Access-Control-Allow-Origin', '*')
     resp.send_header('Content-type',"application/json")
+    
     resp.end_headers()
     resp.wfile.write(bytes(json.dumps(data), "utf8"))

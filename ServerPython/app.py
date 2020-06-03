@@ -56,9 +56,10 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
 
 def run():
     print('Avvio del server...')
-    server_address = ('localhost', 8080)
+    server_address = ('localhost', 8000)
     httpd = HTTPServer(server_address, testHTTPServer_RequestHandler)
     print('Server in esecuzione')
     httpd.serve_forever()
 
 run()
+ 

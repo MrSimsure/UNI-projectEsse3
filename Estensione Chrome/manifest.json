@@ -14,7 +14,7 @@
     "content_scripts": 
     [
         {
-          "matches": ["https://developer.chrome.com/*"],
+          "matches": ["http://127.0.0.1:8080/sito/Area%20Docente,%20Universit%C3%A0%20di%20UNICAM.html"],
           "js": ["contentScript.js"]
         }
     ],
