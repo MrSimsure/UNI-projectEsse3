@@ -9,7 +9,7 @@ var port = "8080"
  */
 function sendData(callback)
 {
-    //collezziona dati
+    //colleziona dati
     let commis = dati_commis.innerHTML.split(", ");
     commis.pop()
 

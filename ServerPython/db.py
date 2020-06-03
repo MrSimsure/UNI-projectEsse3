@@ -1,4 +1,5 @@
 import pymysql.cursors
+from datetime import *
 
 connection = pymysql.connect(host='raspyexaequo.duckdns.org',
                              user='projectUserSimo',
@@ -80,3 +81,22 @@ def getDocenti(matricola, nome, cognome):
         connection.commit()
         cursor.close()
         return data
+
+
+
+## RITORNA DAL DATABASE LA LISTA DEGLI APPELLI CON STESSI EDIFICIO / AULA / DATA / ORARIO
+def checkAule(edificio,aula,data,ora):
+
+    with connection.cursor() as cursor:
+
+        if datetime.strptime(ora, '%y-%m-&d %H-%M-%S') > datetime.strptime('1900-01-01 13-00-00','%y-%m-&d %H-%M-%S'):           
+        
+            cursor.execute("SELECT (APP_DES,DOCE_COGNOME,APP_LOG_ORA_ESA) FROM v10_rpt_calendario_esami WHERE EDIFICI_DES like '"+edificio+"' AND AULE_DES like '"+aula+"' AND APP_LOG_DATA_ESA ='"+data+" 00:00:00' AND APP_LOG_ORA_ESA >= '1900-01-01 13:00:00';")
+            appelli = cursor.fetchall()
+        else:
+            cursor.execute("SELECT (APP_DES,DOCE_COGNOME,APP_LOG_ORA_ESA) FROM v10_rpt_calendario_esami WHERE EDIFICI_DES like '"+edificio+"' AND AULE_DES like '"+aula+"' AND APP_LOG_DATA_ESA ='"+data+" 00:00:00' AND APP_LOG_ORA_ESA < '1900-01-01 13:00:00';")
+            appelli = cursor.fetchall()
+
+        connection.commit()
+        cursor.close()
+        return appelli

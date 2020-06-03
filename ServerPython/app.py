@@ -2,6 +2,7 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from server import sendFile, sendData
 from db import getAule, getEdifici, getDocenti
+from logic import getReport
 import inspect, os
 import urllib.parse
 import json
@@ -33,7 +34,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         dati = urllib.parse.parse_qsl(post_data.decode('utf-8'))
 
         if self.path == '/sendData' :
-            sql = { "testname" : "akshat", "test2name" : "manjeet", "test3name" : "nikhil"} 
+            sql = getReport(dati) 
             ret = json.dumps(sql) 
 
             self.send_response(200)
