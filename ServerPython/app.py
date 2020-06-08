@@ -30,11 +30,12 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
     ## HANDLER DELLE CHIAMATE POST AL SERVER - calcolo dati finali - lista aule - lista docenti
     def do_POST(self):
         content_length = int(self.headers['Content-Length']) 
-        post_data = self.rfile.read(content_length) 
-        dati = urllib.parse.parse_qsl(post_data.decode('utf-8'))
+        post_data = self.rfile.read(content_length)
+        
 
         if self.path == '/sendData' :
-            sql = getReport(dati) 
+            dati = json.loads(post_data)
+            sql = getReport(dati)
             ret = json.dumps(sql) 
 
             self.send_response(200)
@@ -44,11 +45,13 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             if verbose: print("invio calcolo finale")
 
         elif self.path.find("/getAule") != -1:
+            dati = urllib.parse.parse_qsl(post_data.decode('utf-8'))
             sendData(self, getAule(dati[0][1]))
             if verbose: print("invio aule per edificio con id ", str(dati[0][1]))
             return
 
         elif self.path.find("/getDocenti") != -1:
+            dati = urllib.parse.parse_qsl(post_data.decode('utf-8'))
             sendData(self, getDocenti( dati[0][1], dati[1][1], dati[2][1] ))
             if verbose: print("invio aule per edificio con id ", str(dati[0][1]))
             return

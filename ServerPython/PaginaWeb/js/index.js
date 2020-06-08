@@ -1,5 +1,5 @@
 var ip = "localhost"// "192.168.43.32"
-var port = "8080"
+var port = "8000"
 
 
 /**
@@ -26,7 +26,7 @@ function sendData(callback)
         commissione       : commis
     }
 
-    console.log(dati)
+    console.log(JSON.stringify(dati))
 
     //invio
     var request = new XMLHttpRequest();
@@ -41,8 +41,8 @@ function sendData(callback)
         }
     }
     request.open("POST", "http://"+ip+":"+port+"/sendData", true);
-    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-    request.send( $.param(dati) );
+    request.setRequestHeader('Content-type', 'application/json');
+    request.send( JSON.stringify(dati));//$.param(dati) );
 }
 
 /**
