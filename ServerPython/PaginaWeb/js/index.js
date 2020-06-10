@@ -1,6 +1,6 @@
 var ip = "localhost"// "192.168.43.32"
 var port = "8000"
-
+var commissione = []
 
 /**
  * Invia al server tutti i dati inseriti e attende il ritorno della valutazione
@@ -13,17 +13,26 @@ function sendData(callback)
     let commis = dati_commis.innerHTML.split(", ");
     commis.pop()
 
+    let ora = dati_ora.value;
+    let min = dati_minuti.value;
+
+    if(ora == "")
+        ora = "00"
+
+    if(min == "")
+        min = "00"   
+
     var dati = 
     {
         data              : dati_data.value,
-        ora               : dati_ora.value+":"+dati_minuti.value,
+        ora               : ora+"-"+min+"-00",
         dal               : dati_iscr_da.value,
         al                : dati_iscr_a.value,
         desc              : dati_desc.value,
         edificio          : dati_edificio.value,
         aula              : dati_aula.value,
         partizionamento   : dati_partiz.value,
-        commissione       : commis
+        commissione       : commissione
     }
 
     console.log(JSON.stringify(dati))
@@ -204,13 +213,20 @@ function onChangeEdificio(id)
     })
 }
 
+
 /**
  * Evento quando vience cliccato un docente dalla lista per aggiungerlo alla commissione
  * @param {string} nome 
  */
-function onSelectDocente(nome)
+function onSelectDocente(me)
 {
-    dati_commis.innerHTML += nome+", "
+    let nome = me.getAttribute("data-nome");
+    let cognome = me.getAttribute("data-cognome");
+
+    let arr = [nome, cognome]
+    commissione.push(arr)
+
+    dati_commis.innerHTML += nome+" "+cognome+", "
 }
 
 
@@ -238,6 +254,8 @@ function onChangeDocenti()
             let temp = toClone.cloneNode(true);
             let clone = lista.appendChild(temp);
             clone.innerHTML = docente.nome+" "+docente.cognome
+            clone.setAttribute("data-nome", docente.nome)
+            clone.setAttribute("data-cognome", docente.cognome)
         }
         
     })
