@@ -36,7 +36,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
         if self.path == '/sendData' :
             dati = json.loads(post_data)
             sql = getReport(dati)
-            ret = json.dumps(sql) 
+            ret = json.dumps(sql, indent=4, sort_keys=True, default=str) 
             print(sql)
             self.send_response(200)
             self.send_header('Content-type','application/json')

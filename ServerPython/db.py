@@ -88,6 +88,8 @@ def checkCommissione(commissione,data,ora):
     for a in commissione:
 
         with connection.cursor() as cursor:
+            print("SELECT APP_DES,NOME,COGNOME,APP_LOG_ORA_ESA FROM projectDB.v10_rpt_calendario_esami INNER JOIN projectDB.v10_rpt_commissioni_app ON v10_rpt_calendario_esami.APP_ID = v10_rpt_commissioni_app.APP_ID AND v10_rpt_calendario_esami.AD_ID = v10_rpt_commissioni_app.AD_ID WHERE cognome like '"+a[1]+"' AND nome like '"+a[0]+"' AND APP_LOG_DATA_ESA like '"+data+" 00:00:00';")
+           
             cursor.execute("SELECT APP_DES,NOME,COGNOME,APP_LOG_ORA_ESA FROM projectDB.v10_rpt_calendario_esami INNER JOIN projectDB.v10_rpt_commissioni_app ON v10_rpt_calendario_esami.APP_ID = v10_rpt_commissioni_app.APP_ID AND v10_rpt_calendario_esami.AD_ID = v10_rpt_commissioni_app.AD_ID WHERE cognome like '"+a[1]+"' AND nome like '"+a[0]+"' AND APP_LOG_DATA_ESA like '"+data+" 00:00:00';")
             result.append(cursor.fetchall())
 
@@ -96,18 +98,17 @@ def checkCommissione(commissione,data,ora):
         return result
         
 
+
 ## RITORNA DAL DATABASE LA LISTA DEGLI APPELLI CON STESSI EDIFICIO / AULA / DATA / ORARIO
 def checkAule(edificio,aula,data,ora):
 
     with connection.cursor() as cursor:
 
         if datetime.strptime(ora, '%H-%M-%S') > datetime.strptime('13-00-00','%H-%M-%S'):           
-            print("dopo le 13")
-            cursor.execute("SELECT APP_DES,DOCE_COGNOME,APP_LOG_ORA_ESA FROM v10_rpt_calendario_esami WHERE EDIFICI_DES like '"+edificio+"' AND AULE_DES like '"+aula+"' AND APP_LOG_DATA_ESA ='"+data+" 00:00:00' AND APP_LOG_ORA_ESA >= '1900-01-01 13:00:00';")
+            cursor.execute('SELECT APP_DES,DOCE_COGNOME,APP_LOG_ORA_ESA FROM v10_rpt_calendario_esami WHERE EDIFICI_DES like "'+edificio+'" AND AULE_DES like "'+aula+'" AND APP_LOG_DATA_ESA ="'+data+' 00:00:00" AND APP_LOG_ORA_ESA >= "1900-01-01 13:00:00";')
             appelli = cursor.fetchall()
         else:
-            print("prima delle 13")
-            cursor.execute("SELECT APP_DES,DOCE_COGNOME,APP_LOG_ORA_ESA FROM v10_rpt_calendario_esami WHERE EDIFICI_DES like '"+edificio+"' AND AULE_DES like '"+aula+"' AND APP_LOG_DATA_ESA ='"+data+" 00:00:00' AND APP_LOG_ORA_ESA < '1900-01-01 13:00:00';")
+            cursor.execute('SELECT APP_DES,DOCE_COGNOME,APP_LOG_ORA_ESA FROM v10_rpt_calendario_esami WHERE EDIFICI_DES like "'+edificio+'" AND AULE_DES like "'+aula+'" AND APP_LOG_DATA_ESA ="'+data+' 00:00:00" AND APP_LOG_ORA_ESA < "1900-01-01 13:00:00";')
             appelli = cursor.fetchall()
 
         connection.commit()

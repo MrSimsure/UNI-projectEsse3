@@ -15,12 +15,26 @@ function sendData(callback)
 
     let ora = dati_ora.value;
     let min = dati_minuti.value;
+    let edif = "";
+    let aul = "";
 
     if(ora == "")
         ora = "00"
 
     if(min == "")
         min = "00"   
+
+    for(let i=0; i<dati_edificio.childElementCount; i++)
+    {
+        if(dati_edificio.childNodes[i].value == dati_edificio.value)
+            edif = dati_edificio.childNodes[i].innerHTML;
+    }
+
+    for(let i=0; i<dati_aula.childElementCount; i++)
+    {
+        if(dati_aula.childNodes[i].value == dati_aula.value)
+            aul = dati_aula.childNodes[i].innerHTML;
+    }
 
     var dati = 
     {
@@ -29,8 +43,8 @@ function sendData(callback)
         dal               : dati_iscr_da.value,
         al                : dati_iscr_a.value,
         desc              : dati_desc.value,
-        edificio          : dati_edificio.value,
-        aula              : dati_aula.value,
+        edificio          : edif,
+        aula              : aul,
         partizionamento   : dati_partiz.value,
         commissione       : commissione
     }
@@ -53,6 +67,7 @@ function sendData(callback)
     request.setRequestHeader('Content-type', 'application/json');
     request.send( JSON.stringify(dati));//$.param(dati) );
 }
+
 
 /**
  * Elimina tutte le opzioni gia presenti in una select

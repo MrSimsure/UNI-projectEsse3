@@ -8,7 +8,7 @@ def getReport(jsondata):
 
     #ritorna lista di eventuali appelli contrastanti (ESAME, COGNOME PROF, ORARIO)
     aula = checkAule(data["edificio"], data["aula"], data["data"], data["ora"])
-    commissione = checkCommissione(data["commissione"], data ["aula"], data["esame"])
+    commissione = checkCommissione(data["commissione"], data ["data"], data["ora"])
     result = [aula,commissione] 
     return result
 
