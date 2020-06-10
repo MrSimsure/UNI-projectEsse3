@@ -84,14 +84,16 @@ def getDocenti(matricola, nome, cognome):
 
 
 def checkCommissione(commissione,data,ora):
-
+    result = []
     for a in commissione:
 
+        with connection.cursor() as cursor:
+            cursor.execute("SELECT APP_DES,NOME,COGNOME,APP_LOG_ORA_ESA FROM projectDB.v10_rpt_calendario_esami INNER JOIN projectDB.v10_rpt_commissioni_app ON v10_rpt_calendario_esami.APP_ID = v10_rpt_commissioni_app.APP_ID AND v10_rpt_calendario_esami.AD_ID = v10_rpt_commissioni_app.AD_ID WHERE cognome like '"+a[1]+"' AND nome like '"+a[0]+"' AND APP_LOG_DATA_ESA like '"+data+" 00:00:00';")
+            result.append(cursor.fetchall())
 
-        cursor.execute("SELECT APP_DES,NOME,COGNOME,APP_LOG_ORA_ESA FROM projectDB.v10_rpt_calendario_esami INNER JOIN projectDB.v10_rpt_commissioni_app ON v10_rpt_calendario_esami.APP_ID = v10_rpt_commissioni_app.APP_ID AND v10_rpt_calendario_esami.AD_ID = v10_rpt_commissioni_app.AD_ID WHERE cognome like '"+PIERGENTILI+"' AND nome like '"+ALESSANDRO+"' AND APP_LOG_DATA_ESA like '"+2011-02-05+" 00:00:00';")
-        cursor.fetchall()
-
-        return
+            connection.commit()
+            cursor.close()
+        return result
         
 
 ## RITORNA DAL DATABASE LA LISTA DEGLI APPELLI CON STESSI EDIFICIO / AULA / DATA / ORARIO
