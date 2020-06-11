@@ -1,8 +1,8 @@
 {
     "appName": {
-      "message": "Estensione di ESSE3"
+      "message": "Controllo appelli Esse3"
     },
     "appDesc": {
-      "message": "Una bellissima estensione"
+      "message": "Controlla la collissione di un appello al momento della sua creazione sul sito di Esse3"
     }
   }

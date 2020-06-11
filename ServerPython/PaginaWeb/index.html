@@ -178,6 +178,13 @@
 
                                     </tr>
 
+                                    <tr>
+                                        <td style="display: none;" class="tplForm" align="left" colspan="3" id="collisione_aula">
+                                            <div style="color: red;"> L'aula selezionata e' gia occupata da un'altro appello durante questa fascia oraria</div>
+                                    
+                                        </td>
+                                        
+                                    </tr>
 
                                     
                                     <!--ISCRIZIONI DAL AL-->
@@ -236,7 +243,9 @@
                                     <tr>
                                         <th class="tplForm" align="left"><br>
                                             <a style="font-size: 14px; cursor: pointer;" data-toggle="modal" data-target="#modal_docenti">aggiungi docente +</a>
+                                            
                                         </th>
+                                        
                                     </tr>
                                     <tr>
                                         <th class="tplForm" align="left">Commissione:<br>
@@ -245,13 +254,23 @@
                                         <td class="tplForm" align="left" colspan="3">
                                             <a id="commissione"></a>
                                         </td>
+                                        <td class="tplForm" align="left" colspan="3">
+        
+                                        </td>
+                                        
                                     </tr>
-
+                                    <tr style="display: none;"  id="collisione_docente">
+                                        <td class="tplForm" align="left" colspan="3" >
+                                            <div style="color: red;"> Il professore  e' gia in un'altra commissione in quella data e ora</div>
+                                        </td>
+                                        
+                                    </tr>
                                     
 
                                     <tr>
                                         <th class="tplForm" style="height:15px;" align="left"></th>
                                         <td class="tplForm" style="height:15px;" align="left" colspan="4"></td>
+                                        
                                     </tr>
 
                                     <!--DETTAGLI ORGANIZZATIVI-->

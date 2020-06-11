@@ -494,10 +494,10 @@ function changeDisabledAttr(elements, operation){
 function setDiffDate(data_ini, gg_diff, data_new) {
 
   data_ini = data_ini.split('-').reverse().join('-')
-  var arrayData = data_ini.split("-");console.log(arrayData)
+  var arrayData = data_ini.split("-");
   var my_data_ini = new Date(1900,1,1);
   var oneDay = 1000*60*60*24;
-console.log(arrayData)
+
   // la trasformazione dava dei problemi con cifre del tipo 09, con lo 0 avanti
   if (arrayData[0].charAt(0)=='0') arrayData[0] = arrayData[0].substr(1,1);
   if (arrayData[1].charAt(0)=='0') arrayData[1] = arrayData[1].substr(1,1);

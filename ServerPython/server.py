@@ -26,4 +26,4 @@ def sendData(resp, data):
     resp.send_header('Content-type',"application/json")
     
     resp.end_headers()
-    resp.wfile.write(bytes(json.dumps(data), "utf8"))
+    resp.wfile.write(bytes(data, "utf8"))

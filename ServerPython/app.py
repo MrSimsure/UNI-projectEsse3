@@ -22,7 +22,7 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             sendFile(self ,dir+'/'+self.path)
 
         elif self.path.find("/getEdifici")  != -1:
-            sendData(self, getEdifici())
+            sendData(self, json.dumps(getEdifici()))
             if verbose: print("invio edifici")
 
         return
@@ -38,21 +38,18 @@ class testHTTPServer_RequestHandler(BaseHTTPRequestHandler):
             sql = getReport(dati)
             ret = json.dumps(sql, indent=4, sort_keys=True, default=str) 
             print(sql)
-            self.send_response(200)
-            self.send_header('Content-type','application/json')
-            self.end_headers()
-            self.wfile.write(bytes(ret, "utf8"))
+            sendData(self, ret)
             if verbose: print("invio calcolo finale")
 
         elif self.path.find("/getAule") != -1:
             dati = urllib.parse.parse_qsl(post_data.decode('utf-8'))
-            sendData(self, getAule(dati[0][1]))
+            sendData(self, json.dumps(getAule(dati[0][1])))
             if verbose: print("invio aule per edificio con id ", str(dati[0][1]))
             return
 
         elif self.path.find("/getDocenti") != -1:
             dati = urllib.parse.parse_qsl(post_data.decode('utf-8'))
-            sendData(self, getDocenti( dati[0][1], dati[1][1], dati[2][1] ))
+            sendData(self, json.dumps(getDocenti( dati[0][1], dati[1][1], dati[2][1] )))
             if verbose: print("invio aule per edificio con id ", str(dati[0][1]))
             return
 

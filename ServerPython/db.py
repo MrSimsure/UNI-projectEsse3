@@ -85,17 +85,17 @@ def getDocenti(matricola, nome, cognome):
 
 def checkCommissione(commissione,data,ora):
     result = []
+    print(commissione)
     for a in commissione:
-
+        print(a[0])
         with connection.cursor() as cursor:
-            print("SELECT APP_DES,NOME,COGNOME,APP_LOG_ORA_ESA FROM projectDB.v10_rpt_calendario_esami INNER JOIN projectDB.v10_rpt_commissioni_app ON v10_rpt_calendario_esami.APP_ID = v10_rpt_commissioni_app.APP_ID AND v10_rpt_calendario_esami.AD_ID = v10_rpt_commissioni_app.AD_ID WHERE cognome like '"+a[1]+"' AND nome like '"+a[0]+"' AND APP_LOG_DATA_ESA like '"+data+" 00:00:00';")
-           
             cursor.execute("SELECT APP_DES,NOME,COGNOME,APP_LOG_ORA_ESA FROM projectDB.v10_rpt_calendario_esami INNER JOIN projectDB.v10_rpt_commissioni_app ON v10_rpt_calendario_esami.APP_ID = v10_rpt_commissioni_app.APP_ID AND v10_rpt_calendario_esami.AD_ID = v10_rpt_commissioni_app.AD_ID WHERE cognome like '"+a[1]+"' AND nome like '"+a[0]+"' AND APP_LOG_DATA_ESA like '"+data+" 00:00:00';")
             result.append(cursor.fetchall())
 
             connection.commit()
             cursor.close()
-        return result
+    
+    return result
         
 
 

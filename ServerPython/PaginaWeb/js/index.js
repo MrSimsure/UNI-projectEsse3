@@ -49,18 +49,62 @@ function sendData(callback)
         commissione       : commissione
     }
 
-    console.log(JSON.stringify(dati))
+    //console.log(JSON.stringify(dati))
 
-    //invio
+    //invio dati
     var request = new XMLHttpRequest();
     request.onreadystatechange=function()
     {
+        //risposta dal server
         if (request.readyState==4 && request.status==200)
         {
-            if(callback != undefined)
+            let ret = JSON.parse(request.response)
+            console.log(ret)
+
+            //se c'è una collissione di appelli
+            if(ret[0].length > 0)
             {
-                callback(JSON.parse(request.response));
+                document.querySelector("#collisione_aula").style.display = ""
             }
+            else
+            {
+                document.querySelector("#collisione_aula").style.display = "none"
+            }
+
+            //rimuovi tutti i messaggi di collisione dei docenti
+            let errori = document.querySelectorAll("#errore_docente")
+            for(let i=0; i<errori.length; i++)
+            {
+                let curr = errori[i];
+                curr.parentElement.removeChild(curr)
+
+            }
+
+            //se c'è una collissione di docenti in commissione
+            if(ret[1] != null && ret[1].length > 0)
+            {
+                for(let i=0; i<ret[1].length; i++)
+                {
+                    if(ret[1][i].length > 0)
+                    {
+                        let datiDocente = ret[1][i][0]
+                        let nome = datiDocente.NOME
+                        let cognome = datiDocente.COGNOME
+
+                        let dom = document.querySelector("#collisione_docente")
+                        let clone = dom.cloneNode(true)
+                        dom.parentNode.insertBefore(clone, dom.nextSibling);
+                        clone.id = "errore_docente"
+                        clone.style.display = ""
+                        clone.querySelector("div").innerHTML = "Il docente "+nome+" "+cognome+"  e' gia in un'altra commissione in quella data e ora"
+                    }
+                }
+            }
+
+
+            if(callback != undefined)
+                callback(JSON.parse(request.response));
+            
         }
     }
     request.open("POST", "http://"+ip+":"+port+"/sendData", true);
